@@ -6,43 +6,85 @@ html[data-sub-navigation="side"] {
     --layout-sidebar-width: 15rem;
 }
 
-/* Enhancements for side sub-navigation at desktop viewports */
+/* Align layout to the left instead of centering in the middle of wide displays */
 @media (min-width: 64rem) {
+    html[data-sub-navigation="side"] [class*="side-navigation:max-w-panel"],
+    html[data-sub-navigation="side"] div.side-navigation\:max-w-panel,
+    html[data-sub-navigation="side"] div:has(> [class*="w-sidebar"]),
+    html[data-sub-navigation="side"] div:has(> [class*="side-navigation:sticky"]) {
+        max-width: 100% !important;
+        margin-left: 0 !important;
+        padding-left: 1.5rem !important;
+        padding-right: 1.5rem !important;
+    }
+
+    /* Fixed & Scrollable vertical sidebar container */
     html[data-sub-navigation="side"] [class*="w-sidebar"],
     html[data-sub-navigation="side"] nav[class*="sticky"],
-    html[data-sub-navigation="side"] div[class*="side-navigation:sticky"] {
-        padding: 1.25rem 0.75rem !important;
+    html[data-sub-navigation="side"] div[class*="side-navigation:sticky"],
+    html[data-sub-navigation="side"] div.side-navigation\:sticky {
+        top: 4.5rem !important;
+        max-height: calc(100vh - 5.5rem) !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        padding: 1rem 0.625rem !important;
         margin-right: 1.5rem !important;
-        background: var(--card, rgba(15, 23, 42, 0.5)) !important;
+        background: var(--card, rgba(15, 23, 42, 0.6)) !important;
         border: 1px solid var(--border, rgba(255, 255, 255, 0.08)) !important;
         border-radius: 12px !important;
         backdrop-filter: blur(12px) !important;
         box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.25) !important;
+        scrollbar-width: thin !important;
+        scrollbar-color: rgba(255, 255, 255, 0.15) transparent !important;
     }
 
-    html[data-sub-navigation="side"] div[class*="side-navigation:sticky"] > div {
-        gap: 4px !important;
+    /* Custom scrollbars */
+    html[data-sub-navigation="side"] [class*="w-sidebar"]::-webkit-scrollbar,
+    html[data-sub-navigation="side"] div[class*="side-navigation:sticky"]::-webkit-scrollbar {
+        width: 4px !important;
+    }
+
+    html[data-sub-navigation="side"] [class*="w-sidebar"]::-webkit-scrollbar-thumb,
+    html[data-sub-navigation="side"] div[class*="side-navigation:sticky"]::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.15) !important;
+        border-radius: 4px !important;
+    }
+
+    html[data-sub-navigation="side"] [class*="w-sidebar"]::-webkit-scrollbar-thumb:hover,
+    html[data-sub-navigation="side"] div[class*="side-navigation:sticky"]::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.3) !important;
+    }
+
+    html[data-sub-navigation="side"] div[class*="side-navigation:sticky"] > div,
+    html[data-sub-navigation="side"] [class*="w-sidebar"] > div {
+        gap: 3px !important;
+        display: flex !important;
+        flex-direction: column !important;
     }
 
     /* Navigation link items */
     html[data-sub-navigation="side"] div[class*="side-navigation:sticky"] a,
-    html[data-sub-navigation="side"] div[class*="side-navigation:sticky"] div[role="button"] {
+    html[data-sub-navigation="side"] div[class*="side-navigation:sticky"] div[role="button"],
+    html[data-sub-navigation="side"] [class*="w-sidebar"] a {
         position: relative !important;
         display: flex !important;
         align-items: center !important;
-        padding: 0.625rem 0.875rem !important;
-        font-size: 0.84375rem !important;
+        padding: 0.55rem 0.8rem !important;
+        font-size: 0.8125rem !important;
         font-weight: 500 !important;
         color: var(--muted-foreground, #94a3b8) !important;
-        border-radius: 8px !important;
-        transition: all 0.16s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        border-radius: 7px !important;
+        transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1) !important;
         text-decoration: none !important;
         border-left: 3px solid transparent !important;
+        white-space: nowrap !important;
+        margin: 0 !important;
     }
 
     /* Hover effect */
     html[data-sub-navigation="side"] div[class*="side-navigation:sticky"] a:hover,
-    html[data-sub-navigation="side"] div[class*="side-navigation:sticky"] div[role="button"]:hover {
+    html[data-sub-navigation="side"] div[class*="side-navigation:sticky"] div[role="button"]:hover,
+    html[data-sub-navigation="side"] [class*="w-sidebar"] a:hover {
         color: var(--foreground, #f8fafc) !important;
         background: var(--muted, rgba(255, 255, 255, 0.06)) !important;
         transform: translateX(2px) !important;
@@ -52,7 +94,9 @@ html[data-sub-navigation="side"] {
     html[data-sub-navigation="side"] div[class*="side-navigation:sticky"] a.active,
     html[data-sub-navigation="side"] div[class*="side-navigation:sticky"] a[data-status="active"],
     html[data-sub-navigation="side"] div[class*="side-navigation:sticky"] div.active,
-    html[data-sub-navigation="side"] div[class*="side-navigation:sticky"] div[data-status="active"] {
+    html[data-sub-navigation="side"] div[class*="side-navigation:sticky"] div[data-status="active"],
+    html[data-sub-navigation="side"] [class*="w-sidebar"] a.active,
+    html[data-sub-navigation="side"] [class*="w-sidebar"] a[data-status="active"] {
         color: var(--foreground, #ffffff) !important;
         background: var(--card, rgba(255, 255, 255, 0.1)) !important;
         font-weight: 600 !important;

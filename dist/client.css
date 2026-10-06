@@ -4,18 +4,23 @@ html[data-sub-navigation=side] {
 }
 @media (min-width: 64rem) {
   html[data-sub-navigation=side] [class*="side-navigation:max-w-panel"],
+  html[data-sub-navigation=side] [class*=max-w-panel],
   html[data-sub-navigation=side] div.side-navigation\:max-w-panel,
   html[data-sub-navigation=side] div:has(> [class*=w-sidebar]),
-  html[data-sub-navigation=side] div:has(> [class*="side-navigation:sticky"]) {
+  html[data-sub-navigation=side] div:has(> [class*="side-navigation:sticky"]),
+  html[data-sub-navigation=side] div:has(> [class*="side-navigation:w-sidebar"]) {
     max-width: 100% !important;
     margin-left: 0 !important;
+    margin-right: auto !important;
     padding-left: 1.5rem !important;
     padding-right: 1.5rem !important;
   }
   html[data-sub-navigation=side] [class*=w-sidebar],
   html[data-sub-navigation=side] nav[class*=sticky],
   html[data-sub-navigation=side] div[class*="side-navigation:sticky"],
-  html[data-sub-navigation=side] div.side-navigation\:sticky {
+  html[data-sub-navigation=side] div.side-navigation\:sticky,
+  html[data-sub-navigation=side] [class*="side-navigation:w-sidebar"],
+  html[data-sub-navigation=side] .side-navigation\:w-sidebar {
     top: 4.5rem !important;
     max-height: calc(100vh - 5.5rem) !important;
     overflow-y: auto !important;

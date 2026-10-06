@@ -1,0 +1,50 @@
+/* src/client/sidebar.css */
+html[data-sub-navigation=side] {
+  --layout-sidebar-width: 15rem;
+}
+@media (min-width: 64rem) {
+  html[data-sub-navigation=side] [class*=w-sidebar],
+  html[data-sub-navigation=side] nav[class*=sticky],
+  html[data-sub-navigation=side] div[class*="side-navigation:sticky"] {
+    padding: 1.25rem 0.75rem !important;
+    margin-right: 1.5rem !important;
+    background: var(--card, rgba(15, 23, 42, 0.5)) !important;
+    border: 1px solid var(--border, rgba(255, 255, 255, 0.08)) !important;
+    border-radius: 12px !important;
+    backdrop-filter: blur(12px) !important;
+    box-shadow: 0 4px 20px -4px rgba(0, 0, 0, 0.25) !important;
+  }
+  html[data-sub-navigation=side] div[class*="side-navigation:sticky"] > div {
+    gap: 4px !important;
+  }
+  html[data-sub-navigation=side] div[class*="side-navigation:sticky"] a,
+  html[data-sub-navigation=side] div[class*="side-navigation:sticky"] div[role=button] {
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    padding: 0.625rem 0.875rem !important;
+    font-size: 0.84375rem !important;
+    font-weight: 500 !important;
+    color: var(--muted-foreground, #94a3b8) !important;
+    border-radius: 8px !important;
+    transition: all 0.16s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    text-decoration: none !important;
+    border-left: 3px solid transparent !important;
+  }
+  html[data-sub-navigation=side] div[class*="side-navigation:sticky"] a:hover,
+  html[data-sub-navigation=side] div[class*="side-navigation:sticky"] div[role=button]:hover {
+    color: var(--foreground, #f8fafc) !important;
+    background: var(--muted, rgba(255, 255, 255, 0.06)) !important;
+    transform: translateX(2px) !important;
+  }
+  html[data-sub-navigation=side] div[class*="side-navigation:sticky"] a.active,
+  html[data-sub-navigation=side] div[class*="side-navigation:sticky"] a[data-status=active],
+  html[data-sub-navigation=side] div[class*="side-navigation:sticky"] div.active,
+  html[data-sub-navigation=side] div[class*="side-navigation:sticky"] div[data-status=active] {
+    color: var(--foreground, #ffffff) !important;
+    background: var(--card, rgba(255, 255, 255, 0.1)) !important;
+    font-weight: 600 !important;
+    border-left: 3px solid var(--primary, #6366f1) !important;
+    box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.2) !important;
+  }
+}

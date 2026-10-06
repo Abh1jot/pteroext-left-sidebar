@@ -1,0 +1,20 @@
+{
+    "$schema": "./node_modules/@pterodactyl/sdk/manifest.schema.json",
+    "id": "left-sidebar",
+    "name": "Left Sidebar Navigation",
+    "version": "2.0.0",
+    "description": "Transforms Pterodactyl 2.0 server navigation into an elegant, vertical left sidebar with active highlights and fluid transitions.",
+    "author": "Azion",
+    "requires": {
+        "panel": "^2.0.0-dev",
+        "sdk": "^2.0.0-beta.3",
+        "php": "^8.3"
+    },
+    "provider": "LeftSidebar\\LeftSidebarProvider",
+    "autoload": {
+        "LeftSidebar\\": "src"
+    },
+    "ui": {
+        "entry": "dist/client.js"
+    }
+}

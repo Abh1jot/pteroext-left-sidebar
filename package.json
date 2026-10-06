@@ -1,0 +1,19 @@
+{
+    "name": "@pteroext/left-sidebar",
+    "version": "2.0.0",
+    "description": "Left Sidebar Navigation for Pterodactyl 2.0",
+    "main": "dist/client.js",
+    "scripts": {
+        "build": "vite build"
+    },
+    "peerDependencies": {
+        "@pterodactyl/sdk": "^2.0.0-beta.3",
+        "react": "^18.3.1",
+        "react-dom": "^18.3.1"
+    },
+    "devDependencies": {
+        "@types/react": "^18.3.1",
+        "@types/react-dom": "^18.3.1",
+        "typescript": "^5.4.5"
+    }
+}

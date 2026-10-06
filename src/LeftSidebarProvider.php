@@ -2,15 +2,13 @@
 
 namespace LeftSidebar;
 
-use Illuminate\Support\ServiceProvider;
+use Pterodactyl\Extensions\ExtensionProvider;
 
-class LeftSidebarProvider extends ServiceProvider
+class LeftSidebarProvider extends ExtensionProvider
 {
-    public function register(): void
-    {
-        //
-    }
-
+    /**
+     * Boot the Left Sidebar Navigation extension services.
+     */
     public function boot(): void
     {
         //

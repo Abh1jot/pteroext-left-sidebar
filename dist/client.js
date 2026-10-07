@@ -21,25 +21,48 @@
 })();
 // src/client/index.tsx
 import { definePterodactylExtension } from "@pterodactyl/sdk";
-function applySideNavigation() {
-  if (typeof document !== "undefined") {
+function updateNavigationMode() {
+  if (typeof window === "undefined" || typeof document === "undefined") return;
+  const pathname = window.location.pathname || "";
+  const isAdmin = pathname.startsWith("/admin");
+  const isServerArea = pathname.includes("/server/");
+  if (isAdmin || !isServerArea) {
+    if (document.documentElement.getAttribute("data-sub-navigation") === "side") {
+      document.documentElement.removeAttribute("data-sub-navigation");
+    }
+    return;
+  }
+  if (document.documentElement.getAttribute("data-sub-navigation") !== "side") {
     document.documentElement.setAttribute("data-sub-navigation", "side");
   }
 }
-applySideNavigation();
+updateNavigationMode();
 var index_default = definePterodactylExtension({
   setup() {
-    applySideNavigation();
-    if (typeof window !== "undefined" && typeof MutationObserver !== "undefined") {
-      const observer = new MutationObserver(() => {
-        if (document.documentElement.getAttribute("data-sub-navigation") !== "side") {
-          document.documentElement.setAttribute("data-sub-navigation", "side");
-        }
-      });
-      observer.observe(document.documentElement, {
-        attributes: true,
-        attributeFilter: ["data-sub-navigation"]
-      });
+    updateNavigationMode();
+    if (typeof window !== "undefined") {
+      window.addEventListener("popstate", updateNavigationMode);
+      const originalPushState = history.pushState;
+      history.pushState = function(...args) {
+        const res = originalPushState.apply(this, args);
+        setTimeout(updateNavigationMode, 0);
+        return res;
+      };
+      const originalReplaceState = history.replaceState;
+      history.replaceState = function(...args) {
+        const res = originalReplaceState.apply(this, args);
+        setTimeout(updateNavigationMode, 0);
+        return res;
+      };
+      if (typeof MutationObserver !== "undefined") {
+        const observer = new MutationObserver(() => {
+          updateNavigationMode();
+        });
+        observer.observe(document.documentElement, {
+          attributes: true,
+          attributeFilter: ["data-sub-navigation"]
+        });
+      }
     }
   }
 });

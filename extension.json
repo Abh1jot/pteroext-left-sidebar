@@ -6,9 +6,8 @@
     "description": "Transforms Pterodactyl 2.0 server navigation into an elegant, vertical left sidebar with active highlights and fluid transitions.",
     "author": "Azion",
     "requires": {
-        "panel": "^2.0.0-beta.1",
-        "sdk": "^2.0.0-beta.6",
-        "php": "^8.3"
+        "sdk": ">=2.0.0-beta.5 <3.0",
+        "php": ">=8.2"
     },
     "provider": "LeftSidebar\\LeftSidebarProvider",
     "autoload": {
